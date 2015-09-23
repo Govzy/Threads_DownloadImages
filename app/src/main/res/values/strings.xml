@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Threads_DownloadImages</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="urls">
+        <item>Image1</item>
+        <item>Image2</item>
+    </string-array>
+    <string-array name="imageUrls">
+        <item>https://asmallorange.com/assets/css/images/temp/service6.png</item>
+        <item>https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSmCRyw5-tTRbOV6Gszz5uO8BLNLHv8HxLEipcW2eIUP4Cdnpin</item>
+    </string-array>
+</resources>
