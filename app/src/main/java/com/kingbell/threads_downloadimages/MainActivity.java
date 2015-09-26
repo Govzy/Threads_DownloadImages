@@ -28,16 +28,18 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     ImageView imgView;
     Button downloadButton;
     EditText imageURLEdit;
-    LinearLayout loadingScreen =null;
-    Bitmap bmp =null;
+    LinearLayout loadingScreen = null;
+    Bitmap bmp = null;
     ListView ls;
     ProgressBar pB;
 
     String url[];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         imgView = (ImageView) findViewById(R.id.imageView);
         downloadButton = (Button) findViewById(R.id.downloadButton);
         ls = (ListView) findViewById(R.id.listView);
@@ -55,63 +57,47 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     }
 
     public void downloadImage(View view) {
-        Thread myThread = new Thread(new DownloadThread());
-        myThread.start();
+
         //If thread is created by extending thread
-//        DownloadThread mythread = new DownloadThread();
-//        mythread.start();
+        //DownloadThread mythread = new DownloadThread();
+        //mythread.start();
+
+        Thread myThread = new Thread(new downloadThread());
+        myThread.start();
+        //myThread = new downloadThread();
 
     }
-
-    public class DownloadThread implements Runnable {
-        @Override
-        public void run() {
-            downloadImageInto(url[0]);
-        }
-    }
-
-    public void downloadImageInto(String url)
+    public void downloadImageUsingThread(String url)
     {
-        URL downloadU = null;
-        HttpURLConnection connection =null;
-        InputStream inputStream=null;
-        try {
-             downloadU= new URL(url);
-             connection= (HttpURLConnection) downloadU.openConnection();
-             inputStream = connection.getInputStream();
-            bmp = BitmapFactory.decodeStream(inputStream);
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Log.e("hi","set");
-                    imgView.setImageBitmap(bmp);
-                }
-            });
-
+        URL downloadUrl = null;
+        InputStream inputStream = null;
+        HttpURLConnection httpURLConnection = null;
+        try
+        {
+            downloadUrl= new URL(url);
+            httpURLConnection= (HttpURLConnection) downloadUrl.openConnection();
+            inputStream = httpURLConnection.getInputStream();
             int read = -1;
-            while ((read=inputStream.read())!=-1)
+            byte[] byteArray = new byte[2024];
+            while ((read=inputStream.read(byteArray))!=-1)
             {
-                Log.e("Chumma","Ennamma  "+read);
+                Log.e("Hello",""+read);
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        finally {
-            if(connection!=null)
-            {
-                connection.disconnect();
-            }
-            if(inputStream!=null)
-            {
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
 
+    }
+
+    public class downloadThread implements Runnable
+    {
+
+        @Override
+        public void run() {
+            downloadImageUsingThread(url[0]);
         }
     }
+
 }

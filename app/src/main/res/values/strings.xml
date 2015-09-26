@@ -8,7 +8,7 @@
         <item>Image2</item>
     </string-array>
     <string-array name="imageUrls">
-        <item>https://asmallorange.com/assets/css/images/temp/service6.png</item>
-        <item>https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSmCRyw5-tTRbOV6Gszz5uO8BLNLHv8HxLEipcW2eIUP4Cdnpin</item>
+        <item>http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2009/10/20/1256034455391/New-smaller-Coca-Cola-can-001.jpg</item>
+        <item>http://www.craftsinindia.com/newcraftsimages/medicine-buddha-small-plain.jpg</item>
     </string-array>
 </resources>
